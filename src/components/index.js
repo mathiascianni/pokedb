@@ -21,3 +21,4 @@ export * from "./PokemonAbilities";
 export * from "./PokemonStats";
 export * from "./TypesTable";
 export * from "./DamageRelations";
+export * from "./EvolutionChain";

@@ -1,4 +1,4 @@
-import { StyledButton, PokemonImage, BorderedDiv, PokemonGenus, PokemonTypes, PokemonAbilities, Loader, StyledTitle, SmallText, PokemonStats, TypesTable } from "../components";
+import { StyledButton, PokemonImage, BorderedDiv, PokemonGenus, PokemonTypes, PokemonAbilities, Loader, StyledTitle, SmallText, PokemonStats, TypesTable, EvolutionChain } from "../components";
 import { useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import PokemonContext from "../context/PokemonContext";
@@ -21,8 +21,11 @@ const PokemonDetails = () => {
 
     return (
         <main className="container mx-auto shadow-md p-6 font-rubik lg:p-4">
-            <StyledButton href="/">Go to Pokemons</StyledButton> 
-            {loading ? <Loader /> :
+            <StyledButton href="/">Go to Pokemons</StyledButton>
+            {loading ? 
+            <div className="text-center">
+                <Loader />
+            </div> :
                 <>
                     <section className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
                         <PokemonImage sprites={pokemon.sprites} name={pokemon.name} />
@@ -48,6 +51,10 @@ const PokemonDetails = () => {
                                 <p>Abilities:</p>
                                 <PokemonAbilities pokemon={pokemon} />
                             </BorderedDiv>
+                        </div>
+
+                        <div>
+                            <EvolutionChain url={pokemon.id} name={pokemon.name} />
                         </div>
                     </section>
                     <section className="flex flex-col lg:flex-row items-center justify-center gap-8">

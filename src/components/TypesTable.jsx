@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import PokemonContext from "../context/PokemonContext";
 import { DamageRelations } from "./DamageRelations";
 import pokemonTypes from "../helpers/pokemonTypes";
+import { Loader } from "./index";
 
 export const TypesTable = ({ pokemon }) => {
     const pokTypes = pokemon.types.map(type => type.type);
@@ -28,7 +29,7 @@ export const TypesTable = ({ pokemon }) => {
 
     useEffect(() => {
         getTypeOne(typeOneURL);
-        if(typeTwoURL){
+        if (typeTwoURL) {
             getTypeTwo(typeTwoURL);
         } else {
             setLoadingTwo(false);
@@ -37,12 +38,12 @@ export const TypesTable = ({ pokemon }) => {
 
     return (
         <div className="grid grid-cols-9 gap-0.5">
-            {!loadingOne && !loadingTwo && pokemonTypes.map((type, index) => (
+            {(!loadingOne && !loadingTwo) ? pokemonTypes.map((type, index) => (
                 <div className="border rounded-md" key={index}>
                     <span className={"uppercase flex items-center justify-center aspect-square text-white font-semibold text-xs rounded-tr-md rounded-tl-md " + type.color}><span className="drop-shadow-[0_0_3px_rgba(0,0,0,1)] ">{type.type.slice(0, 3)}</span></span>
                     <DamageRelations type1={typeOne} type2={typeTwo} type={type} />
                 </div>
-            ))}
+            )) : <div className="text-center"><Loader /></div>}
         </div>
     );
 }

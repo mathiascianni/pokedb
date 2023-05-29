@@ -10,6 +10,8 @@ const PokemonProvider = ({ children }) => {
     const [allTypes, setAllTypes] = useState([]);
     const [offset, setOffset] = useState(0);
     const [type, setType] = useState("");
+    const [evolutionChain, setEvolutionChain] = useState([]);
+
 
     // Estados para manejar la aplicación
     const [loading, setLoading] = useState(true);
@@ -125,6 +127,48 @@ const PokemonProvider = ({ children }) => {
         return data;
     }
 
+    const getPokemonEvolutionTree = async (id) => {
+        const species = await getPokemonSpecies(id);
+
+        const res = await fetch(species.evolution_chain.url);
+        const data = await res.json();
+
+        const chain = data.chain;
+        const evolutionChain = [];
+
+        const currentPokemon = {
+            name: chain.species.name,
+            id: chain.species.url.split('/').slice(-2, -1)[0],
+            evolutionDetails: chain.evolution_details,
+        };
+        evolutionChain.push(currentPokemon);
+
+        // Obtener la información de las posibles evoluciones del Pokémon actual
+        if (chain.evolves_to.length > 0) {
+            chain.evolves_to.forEach(async (evolution) => {
+                const furtherEvolutions = [];
+                evolution.evolves_to.forEach(async (finalEvolution) => {
+                    const finalPokemon = {
+                        name: finalEvolution.species.name,
+                        id: finalEvolution.species.url.split('/').slice(-2, -1)[0],
+                        evolutionDetails: finalEvolution.evolution_details,
+                    };
+                    furtherEvolutions.push(finalPokemon);
+                });
+                const pokemon = {
+                    name: evolution.species.name,
+                    id: evolution.species.url.split('/').slice(-2, -1)[0],
+                    evolutionDetails: evolution.evolution_details,
+                    furtherEvolutions: furtherEvolutions,
+                };
+                evolutionChain.push(pokemon);
+            });
+        }
+
+        console.log(evolutionChain)
+        setEvolutionChain(evolutionChain);
+    }
+
     const resetPokemons = () => {
         setType("")
         setLimitedTypePokemons([]);
@@ -165,7 +209,9 @@ const PokemonProvider = ({ children }) => {
                 limitedTypePokemons,
                 resetPokemons,
                 allTypes,
-                typesLoading
+                typesLoading,
+                evolutionChain,
+                getPokemonEvolutionTree
             }}
         >
             {children}
