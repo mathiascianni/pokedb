@@ -10,7 +10,7 @@ export const AllRoutes = () => {
     return (
         <>
             <Routes>
-                <Route path="/" element={<HomeView />} />
+                <Route exact path="/" element={<HomeView />} />
                 <Route path="/search" element={<SearchView />} />
                 <Route path="/pokemon/:id" element={<PokemonDetails />} />
                 <Route path="*" element={<View404 />} />
