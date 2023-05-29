@@ -12,10 +12,10 @@ const PokemonProvider = ({ children }) => {
     const [type, setType] = useState("");
     const [evolutionChain, setEvolutionChain] = useState([]);
 
-
     // Estados para manejar la aplicación
     const [loading, setLoading] = useState(true);
     const [typesLoading, setTypesLoading] = useState(true);
+    const [chainLoading, setChainLoading] = useState(true);
 
     const { valueSearch, onInputChange, onResetForm } = useForm({ valueSearch: "" });
 
@@ -129,7 +129,6 @@ const PokemonProvider = ({ children }) => {
 
     const getPokemonEvolutionTree = async (id) => {
         const species = await getPokemonSpecies(id);
-
         const res = await fetch(species.evolution_chain.url);
         const data = await res.json();
 
@@ -165,8 +164,8 @@ const PokemonProvider = ({ children }) => {
             });
         }
 
-        console.log(evolutionChain)
         setEvolutionChain(evolutionChain);
+        setChainLoading(false);
     }
 
     const resetPokemons = () => {
@@ -211,7 +210,8 @@ const PokemonProvider = ({ children }) => {
                 allTypes,
                 typesLoading,
                 evolutionChain,
-                getPokemonEvolutionTree
+                getPokemonEvolutionTree,
+                chainLoading
             }}
         >
             {children}

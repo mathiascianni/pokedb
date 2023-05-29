@@ -17,7 +17,7 @@ const PokemonDetails = () => {
 
     useEffect(() => {
         fetchPokemon(id);
-    }, []);
+    }, [id]);
 
     return (
         <main className="container mx-auto shadow-md p-6 font-rubik lg:p-4">

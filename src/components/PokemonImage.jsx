@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const PokemonImage = ({ sprites, name }) => {
-    const [sprite, setSprite] = useState(sprites.front_default);
+    const [sprite, setSprite] = useState();
     const [alt, setAlt] = useState(`Front sprite of ${name} in default colors`);
+    
+    useEffect(() => {
+        setSprite(sprites.front_default);
+    }, [sprites])
 
     const handleFront = () => {
         setAlt(`Front sprite of ${name} in default colors`);
