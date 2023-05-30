@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import { PokemonList, MainNav, FilterBar, StyledTitle, StyledButton } from "../components";
-import PokemonContext from "../context/PokemonContext";
+
+import { PokemonList, MainNav, FilterBar, StyledButton } from "../components";
 
 const HomeView = () => {
-    const { handleLoadMore } = useContext(PokemonContext);
+
 
     return (
         <div className="flex font-rubik">
@@ -14,9 +13,6 @@ const HomeView = () => {
                 </div>
                 <FilterBar />
                 <PokemonList />
-                <div className="text-center">
-                    <StyledButton clickFunction={handleLoadMore}>Load More</StyledButton>
-                </div>
             </main>
         </div>
     );

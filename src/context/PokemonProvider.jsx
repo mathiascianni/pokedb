@@ -181,9 +181,9 @@ const PokemonProvider = ({ children }) => {
         getAllPokemonsWithLimit();
     }, [offset]);
 
-    useEffect(() => {
-        getAllPokemons();
-    }, []);
+    // useEffect(() => {
+    //     getAllPokemons();
+    // }, []);
 
     useEffect(() => {
         getAllTypes();
@@ -211,7 +211,8 @@ const PokemonProvider = ({ children }) => {
                 typesLoading,
                 evolutionChain,
                 getPokemonEvolutionTree,
-                chainLoading
+                chainLoading,
+                getAllPokemons
             }}
         >
             {children}
