@@ -2,10 +2,10 @@ import { PokemonMiniatures } from "./index";
 
 export const LastEvolutionDetails = ({ lastEvolutionDetails, pokemon }) => {
     return (
-        <div className="flex flex-col text-center gap-1 shadow-lg overflow-hidden bg-white border rounded-md">
+        <div className="flex flex-col text-center gap-1 shadow-lg overflow-hidden bg-white border px-2 py-4 rounded-md hover:shadow-xl transition">
             <div>
+                <span className="capitalize font-bold">{pokemon.name}</span>
                 <PokemonMiniatures id={pokemon.id} />
-                <span className="capitalize">{pokemon.name}</span>
             </div>
             {pokemon.evolutionDetails && (
                 <ul className="flex flex-col gap-1">

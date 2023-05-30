@@ -34,7 +34,7 @@ export const TypesTable = ({ pokemon }) => {
         } else {
             setLoadingTwo(false);
         }
-    }, []);
+    }, [pokemon]);
 
     return (
         <div className="grid grid-cols-9 gap-0.5">

@@ -4,7 +4,7 @@ import PokemonContext from "../context/PokemonContext";
 
 export const MainNav = () => {
     const [toggle, setToggle] = useState(false);
-    const { getAllPokemonsWithType, resetPokemons, getAllTypes, allTypes, typesLoading } = useContext(PokemonContext);
+    const { getAllPokemonsWithType, resetPokemons, allTypes, typesLoading } = useContext(PokemonContext);
 
     const handleAllButton = () => { 
         resetPokemons();

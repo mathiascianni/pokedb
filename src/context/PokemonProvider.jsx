@@ -11,6 +11,8 @@ const PokemonProvider = ({ children }) => {
     const [offset, setOffset] = useState(0);
     const [type, setType] = useState("");
     const [evolutionChain, setEvolutionChain] = useState([]);
+    const [buttonLoader, setButtonLoader] = useState([]);
+    
 
     // Estados para manejar la aplicación
     const [loading, setLoading] = useState(true);
@@ -42,6 +44,7 @@ const PokemonProvider = ({ children }) => {
             ...results
         ]);
         setLoading(false);
+        setButtonLoader(false);
     }
 
     const getAllPokemonsWithType = async (pokType) => {
@@ -175,15 +178,12 @@ const PokemonProvider = ({ children }) => {
 
     const handleLoadMore = () => {
         setOffset(offset + 16);
+        setButtonLoader(true);
     }
 
     useEffect(() => {
         getAllPokemonsWithLimit();
     }, [offset]);
-
-    // useEffect(() => {
-    //     getAllPokemons();
-    // }, []);
 
     useEffect(() => {
         getAllTypes();
@@ -212,7 +212,8 @@ const PokemonProvider = ({ children }) => {
                 evolutionChain,
                 getPokemonEvolutionTree,
                 chainLoading,
-                getAllPokemons
+                getAllPokemons,
+                buttonLoader
             }}
         >
             {children}
