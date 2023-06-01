@@ -1,5 +1,5 @@
 
-import { PokemonList, MainNav, FilterBar, StyledButton } from "../components";
+import { PokemonList, MainNav, FilterBar } from "../components";
 
 const HomeView = () => {
 

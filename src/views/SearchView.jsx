@@ -20,7 +20,7 @@ const SearchView = () => {
     const filteredPokemons = allPokemons.filter(pokemon => pokemon.name.includes(location.state.toLowerCase()));
 
     return (
-        <main className="container mx-auto shadow-md p-6 font-rubik lg:p-4">
+        <main className="container mx-auto p-6 font-rubik lg:p-4">
             <StyledButton href="/" >Go to pokemons</StyledButton>
             {loading ?
                 <div className="flex justify-center"><Loader /></div>
@@ -32,7 +32,6 @@ const SearchView = () => {
                     </ul>
                 </>
             }
-
         </main>
     );
 }
