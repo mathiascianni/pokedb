@@ -1,6 +1,6 @@
 # PokeDB
-
 Proyecto hecho para reforzar conocimientos de React utilizando la api de Pokemon.
+Demo del proyecto: https://pokedb-self.vercel.app/
 
 ## Sobre el proyecto
 
